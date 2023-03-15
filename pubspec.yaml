@@ -1,6 +1,6 @@
 name: google_ads_deferred_deep_link
 description: Flutter Plugin for Google Ads Deferred Deep Link.
-version: 0.0.1
+version: 0.1.0
 homepage: https://github.com/WeiCongcong/google-ads-deferred-deep-link
 
 environment:
