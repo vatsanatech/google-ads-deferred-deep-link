@@ -7,13 +7,16 @@ import 'google_ads_deferred_deep_link.dart';
 import 'google_ads_deferred_deep_link_platform_interface.dart';
 
 @visibleForTesting
-const String deferredDeepLinkUpdate = 'DeferredDeepLinkListener#onDeferredDeepLinkUpdated(String)';
+const String deferredDeepLinkUpdate =
+    'DeferredDeepLinkListener#onDeferredDeepLinkUpdated(String)';
 
 /// An implementation of [GoogleAdsDeferredDeepLinkPlatform] that uses method channels.
-class MethodChannelGoogleAdsDeferredDeepLink extends GoogleAdsDeferredDeepLinkPlatform {
+class MethodChannelGoogleAdsDeferredDeepLink
+    extends GoogleAdsDeferredDeepLinkPlatform {
   /// The method channel used to interact with the native platform.
   @visibleForTesting
-  final methodChannel = const MethodChannel('com.github/google_ads_deferred_deep_link');
+  final methodChannel =
+      const MethodChannel('com.github/google_ads_deferred_deep_link');
 
   final StreamController<GoogleAdsDeferredDeepLinkResult?> _streamController =
       StreamController<GoogleAdsDeferredDeepLinkResult?>.broadcast();
@@ -25,14 +28,15 @@ class MethodChannelGoogleAdsDeferredDeepLink extends GoogleAdsDeferredDeepLinkPl
   Future<void> callHandler(MethodCall call) async {
     switch (call.method) {
       case deferredDeepLinkUpdate:
-        _streamController.add(
-            GoogleAdsDeferredDeepLinkResult.fromMap((call.arguments as Map<dynamic, dynamic>).cast<String, dynamic>()));
+        _streamController.add(GoogleAdsDeferredDeepLinkResult.fromMap(
+            (call.arguments as Map<dynamic, dynamic>).cast<String, dynamic>()));
         break;
     }
   }
 
   @override
-  Stream<GoogleAdsDeferredDeepLinkResult?> get deferredDeepLinkStream => _streamController.stream;
+  Stream<GoogleAdsDeferredDeepLinkResult?> get deferredDeepLinkStream =>
+      _streamController.stream;
 
   @override
   Future<String?> startFetch() async {

@@ -9,7 +9,8 @@ abstract class GoogleAdsDeferredDeepLinkPlatform extends PlatformInterface {
 
   static final Object _token = Object();
 
-  static GoogleAdsDeferredDeepLinkPlatform _instance = MethodChannelGoogleAdsDeferredDeepLink();
+  static GoogleAdsDeferredDeepLinkPlatform _instance =
+      MethodChannelGoogleAdsDeferredDeepLink();
 
   /// The default instance of [GoogleAdsDeferredDeepLinkPlatform] to use.
   ///
@@ -25,11 +26,11 @@ abstract class GoogleAdsDeferredDeepLinkPlatform extends PlatformInterface {
   }
 
   Stream<GoogleAdsDeferredDeepLinkResult?> get deferredDeepLinkStream {
-    throw UnimplementedError('deferredDeepLinkStream has not been implemented.');
+    throw UnimplementedError(
+        'deferredDeepLinkStream has not been implemented.');
   }
 
   Future<String?> startFetch() {
     throw UnimplementedError('startFetch() has not been implemented.');
   }
-
 }
