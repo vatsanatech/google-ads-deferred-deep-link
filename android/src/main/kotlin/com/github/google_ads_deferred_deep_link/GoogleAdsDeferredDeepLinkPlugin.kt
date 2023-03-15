@@ -75,13 +75,12 @@ class GoogleAdsDeferredDeepLinkPlugin : FlutterPlugin, MethodCallHandler {
     val isEmpty = !TextUtils.isEmpty(deepLink)
     if (isEmpty) {
       val cTime = sp.getLong("timestamp", 0L)
-      val gclid = sp.getString("gclid", null)
       val markTime = markSP.getLong("timestamp", -1L)
       if (markTime != cTime) {
         markSP.edit().putLong("timestamp", cTime).apply()
         channel.invokeMethod(
           deferredDeepLinkUpdate,
-          mapOf("deepLink" to deepLink, "timestamp" to cTime, "gclid" to gclid)
+          mapOf("deepLink" to deepLink, "timestamp" to cTime)
         )
       }
     }

@@ -32,9 +32,15 @@ class MethodChannelGoogleAdsDeferredDeepLink extends GoogleAdsDeferredDeepLinkPl
   }
 
   @override
+  Stream<GoogleAdsDeferredDeepLinkResult?> get deferredDeepLinkStream => _streamController.stream;
+
+  @override
   Future<String?> startFetch() async {
+    if (!_streamController.hasListener) {
+      throw Exception(
+          'Before calling startFetch(), you should listen to deferredDeepLinkStream to get the result deferred deep link');
+    }
     final res = await methodChannel.invokeMethod<String>('startFetch');
     return res;
   }
-
 }

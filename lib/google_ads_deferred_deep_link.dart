@@ -11,20 +11,17 @@ class GoogleAdsDeferredDeepLink {
 
 class GoogleAdsDeferredDeepLinkResult {
   final String? deepLink;
-  final String? gclid;
   final int? timestamp;
 
   GoogleAdsDeferredDeepLinkResult({
     this.deepLink,
-    this.gclid,
     this.timestamp,
   });
 
   factory GoogleAdsDeferredDeepLinkResult.fromMap(Map<String, dynamic> map) {
     return GoogleAdsDeferredDeepLinkResult(
-      deepLink: map['deepLink'] as String,
-      gclid: map['gclid'] as String,
-      timestamp: map['timestamp'] as int,
+      deepLink: map['deepLink'] as String?,
+      timestamp: map['timestamp'] as int?,
     );
   }
 }
