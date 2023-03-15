@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_ads_deferred_deep_link/google_ads_deferred_deep_link.dart';
 
@@ -16,35 +16,35 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
+  String _deepLink = 'Unknown';
   final _googleAdsDeferredDeepLinkPlugin = GoogleAdsDeferredDeepLink();
 
   @override
   void initState() {
     super.initState();
-    initPlatformState();
+    _fetchDeferredDeepLink();
   }
 
   // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
-    String platformVersion;
+  Future<void> _fetchDeferredDeepLink() async {
     // Platform messages may fail, so we use a try/catch PlatformException.
     // We also handle the message potentially returning null.
     try {
-      platformVersion =
-          await _googleAdsDeferredDeepLinkPlugin.startFetch() ?? 'Unknown platform version';
+      _googleAdsDeferredDeepLinkPlugin.deferredDeepLinkStream.listen((event) {
+        if (mounted) {
+          setState(() {
+            _deepLink = event?.deepLink ?? 'Callback Error';
+          });
+        }
+      });
+      _googleAdsDeferredDeepLinkPlugin.startFetch();
     } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
+      if (mounted) {
+        setState(() {
+          _deepLink = 'Start Error';
+        });
+      }
     }
-
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
-
-    setState(() {
-      _platformVersion = platformVersion;
-    });
   }
 
   @override
@@ -55,7 +55,7 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+          child: Text('Fetched deep link: $_deepLink\n'),
         ),
       ),
     );
