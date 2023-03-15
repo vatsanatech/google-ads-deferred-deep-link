@@ -3,8 +3,11 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:google_ads_deferred_deep_link/google_ads_deferred_deep_link_method_channel.dart';
 
 void main() {
-  MethodChannelGoogleAdsDeferredDeepLink platform = MethodChannelGoogleAdsDeferredDeepLink();
-  const MethodChannel channel = MethodChannel('com.github/google_ads_deferred_deep_link');
+  TestWidgetsFlutterBinding.ensureInitialized();
+  MethodChannelGoogleAdsDeferredDeepLink platform =
+      MethodChannelGoogleAdsDeferredDeepLink();
+  const MethodChannel channel =
+      MethodChannel('com.github/google_ads_deferred_deep_link');
 
   TestWidgetsFlutterBinding.ensureInitialized();
 
@@ -18,7 +21,8 @@ void main() {
     channel.setMockMethodCallHandler(null);
   });
 
-  test('getPlatformVersion', () async {
+  test('startFetch', () async {
+    platform.deferredDeepLinkStream.listen((event) {});
     expect(await platform.startFetch(), 'Success');
   });
 }
