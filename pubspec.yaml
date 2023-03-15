@@ -1,7 +1,7 @@
 name: google_ads_deferred_deep_link
 description: A new Flutter plugin project.
 version: 0.0.1
-homepage:
+homepage: https://github.com/WeiCongcong/google-ads-deferred-deep-link
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
