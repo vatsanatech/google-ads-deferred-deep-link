@@ -2,6 +2,11 @@
 
 [Google Ads Deferred Deep Link](https://support.google.com/google-ads/answer/12373942?hl=en#zippy=%2Csteps-to-activate-ddl-in-the-gaf-sdk) plugin for [Flutter](https://flutter.io)
 
+## Prerequisite
+
+1. Read the [origin docs](https://support.google.com/google-ads/answer/12373942?hl=en#zippy=%2Csteps-to-activate-ddl-in-the-gaf-sdk) of Google Ads Deferred Deep Link
+1. If possible, contact your business partner of Advertisement from both your orgnization and Google Ads.
+
 ## Getting Started
 
 In your flutter project add the dependency:
@@ -9,6 +14,8 @@ In your flutter project add the dependency:
 ```yaml
 dependencies:
   ...
+  firebase_core:
+  firebase_analytics:
   google_ads_deferred_deep_link:
 ```
 
