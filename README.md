@@ -23,6 +23,31 @@ For help getting started with Flutter development, view the
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
+## Enable the feature in your app
+
+Modify your application manifest by adding the following metadata tag to your application tag.
+
+```xml
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.myawesome.app">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+     android:name=".MainActivity">
+
+     <!-- Value to be added to enable deferred deep links -->
+     <meta-data android:name="google_analytics_deferred_deep_link_enabled" android:value="true"/>
+
+       <activity
+            android:name=".MainActivity" >
+       </activity>
+
+    </application>
+
+</manifest>
+```
+
 ## Usage
 
 import `google_ads_deferred_deep_link.dart`
