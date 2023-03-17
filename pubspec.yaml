@@ -1,6 +1,6 @@
 name: google_ads_deferred_deep_link
 description: Flutter Plugin for Google Ads Deferred Deep Link. Your app users can now be navigated to an appropriate page when they first download and open your app from Google Ads. 
-version: 0.1.1
+version: 1.0.0
 homepage: https://github.com/WeiCongcong/google-ads-deferred-deep-link
 
 environment:
